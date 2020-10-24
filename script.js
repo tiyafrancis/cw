@@ -1,4 +1,6 @@
 
+// Map from https://codepen.io/devbedolla8/pen/gOMwvvK
+// subject to change
 const map = [
     "WWSWWWWWWWWWWWWWWWWWW",
     "W   W     W     W W W",
