@@ -1,26 +1,17 @@
 <html lang="en">
 <head>
 <title>Start Page</title>
-<link rel="stylesheet" type="text/css" href="main.css" media="all" />
+<link rel="stylesheet" type="text/css" href="./style.css" media="all" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    var storedHTML = "";
+    var username = prompt("Enter a username")
 </script>
 </head>
     <body>
-        
-        
-        <div id="tocentre">    
-            <div style="width:500px;height:100px;border:1px solid #000;">
-            <p style="text-align:center;"> <label for="username">Enter a username:</label><br> 
-            <input type="text" id="username" name="username"><br> </p>
-            <p style="text-align:center;"><button><a href='./mockup.html' alt='Broken Link'>Go</a></button> </p>
-            </p>
-        </div>  
-        </div>
-    
-        
-        
+        <div id="maze"></div>
+        <p id="log"></p>
+        <script src="script.js"></script>
+
     </body>
 </html>
