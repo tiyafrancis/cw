@@ -11,6 +11,9 @@
         
     </div>
 
+    <div id='scoreboard'> 
+        
+    </div>
 
 
 
@@ -43,11 +46,8 @@ var pacman = {
 }
 var playerScore = 0 ;
 
-function scoreBoard(){
-    
-}
 
-
+document.getElementById('scoreboard').innerHTML = playerScore ;
 function drawMap() {
     document.getElementById('map').innerHTML = " "
     for(var yaxis = 0; yaxis<world.length; yaxis++){   //initialize x and yaxis, 
@@ -81,49 +81,68 @@ function drawMap() {
     }
 }
 drawMap();  //Calling the above funtion and printing out the map 
+
 // Movement 
 document.onkeydown = function(e) {  // This fcution basically runs whenever you hit any key 
     console.log(world[pacman.yaxis][pacman.xaxis]) ; // Pacmans position in the array
     console.log("Im here") ; 
+    console.log("Score is " + playerScore); 
     // If you hit any key the above code runs on the console, I used hello so that i could find the code above that on the console
     if(e.keyCode === 37){ //Left
         if(world[pacman.yaxis][pacman.xaxis-1] !== 1) {     //1 is the wall, if there is no wall to the left (x axis -1) then execute following code
+            if(world[pacman.yaxis][pacman.xaxis-1] == 4){
+                ++playerScore; 
+            }
             world[pacman.yaxis][pacman.xaxis] = 3 ;          //Pacman's old position being replaced with the background
             pacman.xaxis = pacman.xaxis - 1 ;                // Reducing the x axis so pacman moves left 
             world[pacman.yaxis][pacman.xaxis] = 2 ;          // Replacing new position with pacman
+           // score();
             drawMap() ; // We call the drawMap func every time because we redraw the map everytime the statemnt gets executed 
         }
        
     }
     else if(e.keyCode === 38){ // Up
         if(world[pacman.yaxis -1][pacman.xaxis] !== 1){ // Same logic^
+            if (world[pacman.yaxis -1][pacman.xaxis] == 4){
+                ++playerScore ; 
+            }
             world[pacman.yaxis][pacman.xaxis] = 3 ;  
              pacman.yaxis = pacman.yaxis - 1 ; 
             world[pacman.yaxis][pacman.xaxis] = 2 ;
+         //   score();
             drawMap() ; 
         }
         
     } 
     else if(e.keyCode === 39){ // Right 
        if(world[pacman.yaxis][pacman.xaxis+1] !== 1) {
+        if(world[pacman.yaxis][pacman.xaxis+1] == 4){
+            ++playerScore;  
+        }
         world[pacman.yaxis][pacman.xaxis] = 3 ;  
         pacman.xaxis = pacman.xaxis + 1 ; 
         world[pacman.yaxis][pacman.xaxis] = 2 ;
+        //score();
         drawMap() ; 
        }
         
     } 
     else if(e.keyCode === 40){ //Down
         if(world[pacman.yaxis+1][pacman.xaxis] !== 1){
+        if (world[pacman.yaxis+1][pacman.xaxis] == 4){
+            ++playerScore; 
+        }
         world[pacman.yaxis][pacman.xaxis] = 3 ;  
         pacman.yaxis = pacman.yaxis + 1 ; 
         world[pacman.yaxis][pacman.xaxis] = 2 ;
+      //  score();
         drawMap() ; 
         }
         
     }
-
+   
     drawMap() ; 
+    
 }
 
 
