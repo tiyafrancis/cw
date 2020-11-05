@@ -3,71 +3,76 @@ div {
 }
 
 .player {
-    width: 50px;
-    height: 50px;
+    width: 29px;
+    height: 26px;
     background-image: url(./pacman_resized.png);
+    background-size: 26px;
     display: inline-block;
 }
 
 .player_down {
-    width: 50px;
-    height: 50px;
+    width: 29px;
+    height: 26px;
     background-image: url(./pacman_resized_down.png);
+    background-size: 26px;
     display: inline-block;
 }
 
 .player_left {
-    width: 50px;
-    height: 50px;
+    width: 29px;
+    height: 26px;
     background-image: url(./pacman_resized_left.png);
+    background-size: 26px;
     display: inline-block;
 }
 
 .player_up {
-    width: 50px;
-    height: 50px;
+    width: 29px;
+    height: 26px;
     background-image: url(./pacman_resized_up.png);
+    background-size: 26px;
     display: inline-block;
 }
 
 .wall {
-    width: 50px;
-    height: 50px;
+    width: 29px;
+    height: 26px;
     background-color: rgb(17, 56, 173);
     display: inline-block;
 }
 
 .coin {
-    width: 50px;
-    height: 50px;
+    width: 29px;
+    height: 26px;
     background-image: url(./bettercoin.png.jpg);
+    background-size: 25px;
     display: inline-block;
 }
 
 .bg {
-    width: 50px;
-    height: 50px;
+    width: 29px;
+    height: 26px;
     background-color: black;
     display: inline-block;
 }
 
 .ghost1 {
-    width: 50px;
-    height: 50px;
+    width: 25px;
+    height: 25px;
     background-color: rgba(225, 0, 255, 0.945);
     display: inline-block;
 }
 
 .ghost2 {
-    width: 50px;
-    height: 50px;
+    width: 25px;
+    height: 25px;
     background-color: rgba(255, 51, 0, 0.945);
     display: inline-block;
 }
 
 .ghost3 {
-    width: 50px;
-    height: 50px;
+    width: 25px;
+    height: 25px;
     background-color: rgb(94, 255, 0);
     display: inline-block;
 }
