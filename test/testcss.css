@@ -2,6 +2,12 @@ div {
     margin: -2px;
 }
 
+body {
+    margin-left: 580px;
+    margin-top: 200px;
+    background-color: black;
+}
+
 .player {
     width: 29px;
     height: 26px;
