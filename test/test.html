@@ -53,14 +53,12 @@
             xaxis: 1,
             yaxis: 1
         }
+        var userName = prompt("Please enter a username");
         var playerScore = 0;
-        var totalGameScore = playerScore; // + other player scores. yet to be implemented
+        var totalGameScore = 0;
 
-        function gameOver() {
-            if (totalGameScore = 47) {
-                alert("You won");
-            }
-        }
+
+
 
         function drawMap() {
             document.getElementById('map').innerHTML = " "
@@ -151,8 +149,14 @@
                 }
 
             }
-
+            totalGameScore = playerScore; // + other player scores. yet to be implemented
+            function gameOver() {
+                if (totalGameScore == 47) {
+                    alert("Nice work " + userName + "!!");
+                }
+            }
             drawMap();
+            gameOver();
 
             console.log("Im here");
             console.log("Score is " + playerScore);
