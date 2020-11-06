@@ -1,50 +1,84 @@
-div{
+div {
     margin: -2px;
 }
-.player{
-    width: 50px;
-    height: 50px;
-    background-image: url(./pacman_resized.png);
-    display: inline-block;
-    
+
+body {
+    margin-left: 580px;
+    margin-top: 200px;
+    background-color: black;
 }
 
-.wall{
-    width: 50px;
-    height: 50px;
+.player {
+    width: 29px;
+    height: 26px;
+    background-image: url(./pacman_resized.png);
+    background-size: 26px;
+    display: inline-block;
+}
+
+.player_down {
+    width: 29px;
+    height: 26px;
+    background-image: url(./pacman_resized_down.png);
+    background-size: 26px;
+    display: inline-block;
+}
+
+.player_left {
+    width: 29px;
+    height: 26px;
+    background-image: url(./pacman_resized_left.png);
+    background-size: 26px;
+    display: inline-block;
+}
+
+.player_up {
+    width: 29px;
+    height: 26px;
+    background-image: url(./pacman_resized_up.png);
+    background-size: 26px;
+    display: inline-block;
+}
+
+.wall {
+    width: 29px;
+    height: 26px;
     background-color: rgb(17, 56, 173);
     display: inline-block;
 }
 
-.coin{
-    width: 50px;
-    height: 50px;
+.coin {
+    width: 29px;
+    height: 26px;
     background-image: url(./bettercoin.png.jpg);
+    background-size: 25px;
     display: inline-block;
-    
 }
 
-.bg{
-    width: 50px;
-    height: 50px;
+.bg {
+    width: 29px;
+    height: 26px;
     background-color: black;
-    display: inline-block; 
+    display: inline-block;
 }
-.ghost1{
-    width: 50px;
-    height: 50px;
+
+.ghost1 {
+    width: 25px;
+    height: 25px;
     background-color: rgba(225, 0, 255, 0.945);
     display: inline-block;
 }
-.ghost2{
-    width: 50px;
-    height: 50px;
+
+.ghost2 {
+    width: 25px;
+    height: 25px;
     background-color: rgba(255, 51, 0, 0.945);
     display: inline-block;
 }
-.ghost3{
-    width: 50px;
-    height: 50px;
+
+.ghost3 {
+    width: 25px;
+    height: 25px;
     background-color: rgb(94, 255, 0);
     display: inline-block;
 }
