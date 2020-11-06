@@ -4,7 +4,7 @@ __Team Members:__
 * Tiya
 * Vaibhav
 * Madiha 
-* Yousef
+* Yousuf
 
 __Game:__
 * 2D
