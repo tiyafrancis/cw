@@ -21,4 +21,4 @@ __Game plan (inspired by OG Pac-Man):__
   
   
 
-<img src="https://github.com/WAP-5/cw/blob/main/Game_Plan.PNG" width = 800>
+<img src="https://github.com/tiyafrancis/cw/blob/main/image/Game_Plan.PNG" width = 800>
