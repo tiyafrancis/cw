@@ -11,7 +11,7 @@ body {
 .player {
     width: 29px;
     height: 26px;
-    background-image: url(./pacman_resized.png);
+    background-image: url(images/pacman_right.png);
     background-size: 26px;
     display: inline-block;
 }
@@ -19,7 +19,7 @@ body {
 .player_down {
     width: 29px;
     height: 26px;
-    background-image: url(./pacman_resized_down.png);
+    background-image: url(images/pacman_down.png);
     background-size: 26px;
     display: inline-block;
 }
@@ -27,7 +27,7 @@ body {
 .player_left {
     width: 29px;
     height: 26px;
-    background-image: url(./pacman_resized_left.png);
+    background-image: url(images/pacman_left.png);
     background-size: 26px;
     display: inline-block;
 }
@@ -35,7 +35,7 @@ body {
 .player_up {
     width: 29px;
     height: 26px;
-    background-image: url(./pacman_resized_up.png);
+    background-image: url(images/pacman_up.png);
     background-size: 26px;
     display: inline-block;
 }
@@ -50,7 +50,7 @@ body {
 .coin {
     width: 29px;
     height: 26px;
-    background-image: url(./bettercoin.png.jpg);
+    background-image: url(images/coin.png);
     background-size: 25px;
     display: inline-block;
 }
