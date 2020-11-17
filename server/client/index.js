@@ -36,8 +36,19 @@ var playerScore = 0;
 var totalGameScore = 0;
 document.getElementById('scoreboard').innerHTML = "Score: " + playerScore;
 
+var playerNum = 0; 
+var ready = false ; 
+const socket = io(); 
 
-
+socket.on('player-number', num => {
+    if (num == -1){
+        infoDisplay.innerHTML = "Sorry the server is full" ; 
+    }
+    else{
+        playerNum = parseInt(num); 
+        console.log(playerNum); 
+    }
+})
 
 function drawMap() {
     document.getElementById('map').innerHTML = " "
