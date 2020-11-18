@@ -58,7 +58,7 @@ function multiplayer() {
     })
 }
 
-mp.addEventListener('click', multiplayer);
+mp.addEventListener('click', multiplayer); //On clicking multiplayer call multiplayer()
 
 function drawMap() { //game logic
     document.getElementById('map').innerHTML = " "
@@ -108,7 +108,7 @@ i tried using playernum = 0 which worked. but in the else if
 statement for movement of player 2, the code isn't running 
 
 */
-if (playerNum == 0) {
+if (playerNum === 0) {
     document.onkeydown = function(e) { // This fcution basically runs whenever you hit any key 
         console.log(world[pacman.yaxis][pacman.xaxis]); // Pacmans position in the array 
         // If you hit any key the above code runs on the console, I used hello so that i could find the code above that on the console
@@ -161,7 +161,7 @@ if (playerNum == 0) {
 
             }
 
-        } else if (playerNum == 1) {
+        } else if (playerNum === 1) {
             if (e.key === "ArrowLeft") { //Left
                 if (world[pacman2.yaxis][pacman2.xaxis - 1] !== 1) { //1 is the wall, if there is no wall to the left (x axis -1) then execute following code
                     if (world[pacman2.yaxis][pacman2.xaxis - 1] == 4) {

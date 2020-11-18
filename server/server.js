@@ -36,6 +36,8 @@ io.on('connection', socket => { //On user connection
         return;
     }
 
+    numberOfConnections[playerNumber] = false;
+
     socket.broadcast.emit('playerConnection', playerNumber); // On player connection, tell what player the user is 
 
     socket.on('disconnect', () => {
