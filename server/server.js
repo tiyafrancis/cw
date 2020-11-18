@@ -14,10 +14,9 @@ server.listen(3000, () => { // Listening on port
     console.log('listening on *:3000');
 });
 
-const numberOfConnections = [null, null, null, null, null, null]; // 5 players in each game 
+const numberOfConnections = [null, null, null, null, null]; // 5 players in each game 
 
 io.on('connection', socket => { //On user connection
-
     var playerNumber = -1;
     for (var i in numberOfConnections) { //Iterating through the array
         if (numberOfConnections[i] == null) {
@@ -29,21 +28,16 @@ io.on('connection', socket => { //On user connection
     socket.emit('player-number', playerNumber); //Telling the user what player they are
     console.log(`Player ${playerNumber} has joined`);
 
-
-    //Ignoring additional players 
-
-    if (playerNumber == 6) {
-        return;
-    }
-
     numberOfConnections[playerNumber] = false;
-
-    socket.broadcast.emit('playerConnection', playerNumber); // On player connection, tell what player the user is 
 
     socket.on('disconnect', () => {
         console.log(`Player ${playerNumber} has disconnected`);
         numberOfConnections[playerNumber] = null;
     })
 
+    //Ignoring additional players 
 
+    if (playerNumber == 6) {
+        return;
+    }
 });

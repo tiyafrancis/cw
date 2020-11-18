@@ -16,14 +16,6 @@ body {
     display: inline-block;
 }
 
-.player2 {
-    width: 29px;
-    height: 26px;
-    background-image: url(images/pacman_right.png);
-    background-size: 26px;
-    display: inline-block;
-}
-
 .player_down {
     width: 29px;
     height: 26px;
