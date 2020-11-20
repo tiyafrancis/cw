@@ -31,6 +31,10 @@ io.on('connection', socket => { //On user connection
         socket.id = name;
     })
 
+    socket.on('disconnect', () => {
+        console.log(`${socket.id} has disconnected`);
+    })
+
     socket.on('player-joined', () => {
         connections.push(socket.id);
         socket.emit('player-joined-notification', { playerNumber: connections.indexOf(socket.id) })
@@ -71,4 +75,5 @@ io.on('connection', socket => { //On user connection
     // if (playerNumber == 6) {
     //     return;
     // }
+    
 });
