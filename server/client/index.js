@@ -239,7 +239,7 @@ document.onkeydown = function(e) { // This fcution basically runs whenever you h
     function gameOver() {
 
         if (totalGameScore == 47) {
-            alert("Nice work " + userName + "!!");
+            alert("Nice work " + userName + ", You won!!");
             socket.emit('gameover', totalGameScore);
         }
     }
@@ -279,7 +279,7 @@ socket.on('updateScores', updateScores);
 
 
 function gameOver2() {
-    alert("game over");
+    alert("Game over");
     gameOverMap();
 }
 
