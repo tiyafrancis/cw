@@ -117,7 +117,7 @@ function drawMap() {
     }
 
 }
-
+//TODO: add refresh div on html to refresh the game
 function gameOverMap() { // Same code as above but coins are replaced w bg for when teh game is over
     document.getElementById('map').innerHTML = " "
     for (var yaxis = 0; yaxis < world.length; yaxis++) { //initialize x and yaxis, 
