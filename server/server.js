@@ -18,6 +18,7 @@ const connections = []; // 5 players in each game
 var playerStatus = {}; //Players score, location
 
 io.on('connection', socket => { //On user connection
+    
     /*  var playerNumber = -1;
     for (var i in numberOfConnections) { //Iterating through the array
         if (numberOfConnections[i] == null) {
@@ -29,10 +30,11 @@ io.on('connection', socket => { //On user connection
 
     socket.on('userName', name => {
         socket.id = name;
+        console.log(`yay!! ${name} just connected!`);
     })
 
     socket.on('disconnect', () => {
-        console.log(`${socket.id} has disconnected`);
+        console.log(`aww ${socket.id} just left`);
     })
 
     socket.on('player-joined', () => {
