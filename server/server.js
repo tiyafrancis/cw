@@ -13,9 +13,9 @@ app.use(express.static(path.join(__dirname, "client"))); //Serving static folder
 server.listen(3000, () => { // Listening on port 
     console.log('listening on *:3000');
 });
-
+var playerNames = {};
 const connections = []; // 5 players in each game 
-var playerStatus = {};
+var playerStatus = {}; //Players score, location
 
 io.on('connection', socket => { //On user connection
     /*  var playerNumber = -1;
@@ -27,7 +27,9 @@ io.on('connection', socket => { //On user connection
     }
 */
 
-
+    socket.on('userName', name => {
+        socket.id = name;
+    })
 
     socket.on('player-joined', () => {
         connections.push(socket.id);
@@ -36,7 +38,10 @@ io.on('connection', socket => { //On user connection
 
     socket.on('playerPosition', data => {
         playerStatus[socket.id] = (data.playerPosition);
-        console.log(playerStatus);
+        // console.log(playerStatus);
+        var myJSON = JSON.stringify(playerStatus);
+        socket.emit('scores', myJSON);
+        console.log(myJSON);
     })
 
     socket.on('playerScore', data => {
@@ -44,7 +49,13 @@ io.on('connection', socket => { //On user connection
         console.log(playerStatus);
     })
 
+
+
     // TODO: setInterval function 
+
+    setInterval(() => { // Refreshing wvery 2 milliseconds 
+        socket.emit('updateScores', playerStatus);
+    }, 300)
 
 
     /*

@@ -36,13 +36,18 @@ var pacman = {
 pacmans = {}; //Object to hold other players and to draw on the client side 
 
 var userName = prompt("Please enter a username");
+
+
+
 var playerScore = 0;
-var totalGameScore = 0;
-document.getElementById('scoreboard').innerHTML = "Score: " + playerScore;
+//var totalGameScore = 0;
+document.getElementById('scoreboard').innerHTML = "Score: ";
 
 var playerNum = 0;
 var ready = false;
 const socket = io();
+
+socket.emit('userName', userName);
 
 socket.on('player-joined-notification', data => {
     console.log(`Player ${data.playerNumber} has joined`);
@@ -56,11 +61,11 @@ socket.on('player-joined-notification', data => {
     }
 
     pacmans[data.player] = {
-        xaxis: 1,
-        yaxis: 2,
-        score: 0
-    }
-
+            xaxis: 1,
+            yaxis: 2,
+            score: 0
+        }
+        ////updateMap();
 })
 
 
@@ -79,9 +84,6 @@ function drawMap() {
         console.log(world[yaxis])
         for (var xaxis = 0; xaxis < world[yaxis].length; xaxis++) {
             console.log(world[yaxis][xaxis]) //Itearte through x and y axis's 
-            for (let pm in pacmans) {
-                world[pacmans[pm].yaxis][pacmans[pm].xaxis] = 9; // Iterating through pacmans, and drawing them on the world 
-            }
             if (world[yaxis][xaxis] == 1) { // If x or y axis is 1, return wall to the map div 
                 document.getElementById('map').innerHTML += "<div class='wall'></div>";
             } //Similarly for the following
@@ -108,15 +110,17 @@ function drawMap() {
 
         document.getElementById('map').innerHTML += "<br>"; //Break statement so every nested array is 
         // is printed out seperately 
-    }
 
+    }
+    for (let pm in pacmans) {
+        world[pacmans[pm].yaxis][pacmans[pm].xaxis] = 9; // Iterating through pacmans, and drawing them on the world 
+    }
 
 }
 drawMap(); //Calling the above funtion and printing out the map 
 //TODO: Use the for loop iterating through the pacman object and put it in a new function
-// called updateMap where its called after every drawMap() 
+// called //updateMap where its called after every drawMap() 
 // Movement 
-
 
 
 document.onkeydown = function(e) { // This fcution basically runs whenever you hit any key 
@@ -127,11 +131,13 @@ document.onkeydown = function(e) { // This fcution basically runs whenever you h
             if (world[pacman.yaxis][pacman.xaxis - 1] == 4) {
                 ++playerScore;
                 pacman.score += 1
+                socket.emit('playerPosition', { playerPosition: pacman.score });
             }
             world[pacman.yaxis][pacman.xaxis] = 3; //Pacman's old position being replaced with the background
             pacman.xaxis = pacman.xaxis - 1; // Reducing the x axis so pacman moves left 
             world[pacman.yaxis][pacman.xaxis] = 9; // Replacing new position with pacman
             // score();
+            //updateMap();
             drawMap(); // We call the drawMap func every time because we redraw the map everytime the statemnt gets executed 
         }
 
@@ -140,11 +146,13 @@ document.onkeydown = function(e) { // This fcution basically runs whenever you h
             if (world[pacman.yaxis - 1][pacman.xaxis] == 4) {
                 ++playerScore;
                 pacman.score += 1
+                socket.emit('playerPosition', { playerPosition: pacman.score });
             }
             world[pacman.yaxis][pacman.xaxis] = 3;
             pacman.yaxis = pacman.yaxis - 1;
             world[pacman.yaxis][pacman.xaxis] = 10;
             //   score();
+            //updateMap();
             drawMap();
         }
 
@@ -153,11 +161,13 @@ document.onkeydown = function(e) { // This fcution basically runs whenever you h
             if (world[pacman.yaxis][pacman.xaxis + 1] == 4) {
                 ++playerScore;
                 pacman.score += 1
+                socket.emit('playerPosition', { playerPosition: pacman.score });
             }
             world[pacman.yaxis][pacman.xaxis] = 3;
             pacman.xaxis = pacman.xaxis + 1;
             world[pacman.yaxis][pacman.xaxis] = 2;
             //score();
+            //updateMap();
             drawMap();
         }
 
@@ -166,11 +176,13 @@ document.onkeydown = function(e) { // This fcution basically runs whenever you h
             if (world[pacman.yaxis + 1][pacman.xaxis] == 4) {
                 ++playerScore;
                 pacman.score += 1
+                socket.emit('playerPosition', { playerPosition: pacman.score });
             }
             world[pacman.yaxis][pacman.xaxis] = 3;
             pacman.yaxis = pacman.yaxis + 1;
             world[pacman.yaxis][pacman.xaxis] = 8;
             //  score();
+            //updateMap();
             drawMap();
 
         }
@@ -183,12 +195,35 @@ document.onkeydown = function(e) { // This fcution basically runs whenever you h
         }
     }
 
-    socket.emit('playerPosition', { playerPosition: pacman });
+
+    //  socket.emit('playerPosition', { playerPosition: pacman.score });
+    /*
+    function updateMap() {
+        for (let pm in pacmans) {
+            world[pacmans[pm].yaxis][pacmans[pm].xaxis] = 9; // Iterating through pacmans, and drawing them on the world 
+        }
+    }
+    */
+    //socket.on('updatePosition', updateMap);
 
     drawMap();
+    //updateMap();
     gameOver();
-
     console.log("Im here");
     console.log("Score is " + playerScore);
-    document.getElementById('scoreboard').innerHTML = "Score: " + playerScore;
+    //document.getElementById('scoreboard').innerHTML = "Score: " + playerScore;
 }
+
+
+socket.on('scores', liveScores => {
+    //var myJSON = JSON.stringify(liveScores);
+    //console.log(myJSON);
+    document.getElementById('scoreboard').innerHTML = "Score: " + liveScores;
+
+});
+
+function updateScores() {
+    socket.emit('playerPosition', { playerPosition: pacman.score });
+}
+
+socket.on('updateScores', updateScores);
