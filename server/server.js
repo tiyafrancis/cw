@@ -38,10 +38,10 @@ io.on('connection', socket => { //On user connection
 
     socket.on('playerPosition', data => {
         playerStatus[socket.id] = (data.playerPosition);
-        // console.log(playerStatus);
+        console.log(playerStatus);
         var myJSON = JSON.stringify(playerStatus);
         socket.emit('scores', myJSON);
-        console.log(myJSON);
+        // console.log(myJSON);
     })
 
     socket.on('playerScore', data => {
@@ -50,8 +50,10 @@ io.on('connection', socket => { //On user connection
     })
 
 
-
-    // TODO: setInterval function 
+    //socket.emit('totalscore', playerStatus.score); 
+    socket.on('gameover', data => {
+        socket.broadcast.emit('gameover2', data);
+    })
 
     setInterval(() => { // Refreshing wvery 2 milliseconds 
         socket.emit('updateScores', playerStatus);
