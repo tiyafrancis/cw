@@ -6,7 +6,8 @@ const socketio = require('socket.io'); // Socket io server
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-
+//const sql = require('mysql');
+    
 app.use(express.static(path.join(__dirname, "client"))); //Serving static folder to the client
 
 
@@ -44,6 +45,7 @@ io.on('connection', socket => { //On user connection
         playerStatus[socket.id] = (data.playerPosition);
         console.log(playerStatus);
         var myJSON = JSON.stringify(playerStatus);
+        myJSON = myJSON.replace(/[{​​​​​}​​​​​]/g, '');
         socket.emit('scores', myJSON);
         // console.log(myJSON);
     })
