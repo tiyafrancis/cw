@@ -117,6 +117,53 @@ function drawMap() {
     }
 
 }
+//TODO: add refresh div on html to refresh the game
+function gameOverMap() { // Same code as above but coins are replaced w bg for when teh game is over
+    document.getElementById('map').innerHTML = " "
+    for (var yaxis = 0; yaxis < world.length; yaxis++) { //initialize x and yaxis, 
+        console.log(world[yaxis])
+        for (var xaxis = 0; xaxis < world[yaxis].length; xaxis++) {
+            console.log(world[yaxis][xaxis]) //Itearte through x and y axis's 
+            if (world[yaxis][xaxis] == 1) { // If x or y axis is 1, return wall to the map div 
+                document.getElementById('map').innerHTML += "<div class='wall'></div>";
+            } //Similarly for the following
+            else if (world[yaxis][xaxis] == 3) {
+                document.getElementById('map').innerHTML += "<div class='bg'></div>";
+            } else if (world[yaxis][xaxis] == 2) {
+                document.getElementById('map').innerHTML += "<div class='player'></div>";
+            } else if (world[yaxis][xaxis] == 4) {
+                document.getElementById('map').innerHTML += "<div class='bg'></div>";
+            } else if (world[yaxis][xaxis] == 5) {
+                document.getElementById('map').innerHTML += "<div class='ghost1'></div>";
+            } else if (world[yaxis][xaxis] == 6) {
+                document.getElementById('map').innerHTML += "<div class='ghost2'></div>";
+            } else if (world[yaxis][xaxis] == 7) {
+                document.getElementById('map').innerHTML += "<div class='ghost3'></div>";
+            } else if (world[yaxis][xaxis] == 8) {
+                document.getElementById('map').innerHTML += "<div class='player_down'></div>";
+            } else if (world[yaxis][xaxis] == 9) {
+                document.getElementById('map').innerHTML += "<div class='player_left'></div>";
+            } else if (world[yaxis][xaxis] == 10) {
+                document.getElementById('map').innerHTML += "<div class='player_up'></div>";
+            }
+        }
+
+        document.getElementById('map').innerHTML += "<br>"; //Break statement so every nested array is 
+        // is printed out seperately 
+
+    }
+    for (let pm in pacmans) {
+        world[pacmans[pm].yaxis][pacmans[pm].xaxis] = 9; // Iterating through pacmans, and drawing them on the world 
+    }
+
+}
+
+
+
+
+
+
+
 drawMap(); //Calling the above funtion and printing out the map 
 //TODO: Use the for loop iterating through the pacman object and put it in a new function
 // called //updateMap where its called after every drawMap() 
@@ -190,8 +237,10 @@ document.onkeydown = function(e) { // This fcution basically runs whenever you h
     }
     totalGameScore = playerScore; // + other player scores. yet to be implemented
     function gameOver() {
+
         if (totalGameScore == 47) {
-            alert("Nice work " + userName + "!!");
+            alert("Nice work " + userName + ", You won!!");
+            socket.emit('gameover', totalGameScore);
         }
     }
 
@@ -227,3 +276,11 @@ function updateScores() {
 }
 
 socket.on('updateScores', updateScores);
+
+
+function gameOver2() {
+    alert("Game over");
+    gameOverMap();
+}
+
+socket.on('gameover2', gameOver2);

@@ -6,7 +6,8 @@ const socketio = require('socket.io'); // Socket io server
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-
+//const sql = require('mysql');
+    
 app.use(express.static(path.join(__dirname, "client"))); //Serving static folder to the client
 
 
@@ -44,10 +45,11 @@ io.on('connection', socket => { //On user connection
 
     socket.on('playerPosition', data => {
         playerStatus[socket.id] = (data.playerPosition);
-        // console.log(playerStatus);
+        console.log(playerStatus);
         var myJSON = JSON.stringify(playerStatus);
+        myJSON = myJSON.replace(/[{​​​​​}​​​​​]/g, '');
         socket.emit('scores', myJSON);
-        console.log(myJSON);
+        // console.log(myJSON);
     })
 
     socket.on('playerScore', data => {
@@ -56,8 +58,10 @@ io.on('connection', socket => { //On user connection
     })
 
 
-
-    // TODO: setInterval function 
+    //socket.emit('totalscore', playerStatus.score); 
+    socket.on('gameover', data => {
+        socket.broadcast.emit('gameover2', data);
+    })
 
     setInterval(() => { // Refreshing wvery 2 milliseconds 
         socket.emit('updateScores', playerStatus);
