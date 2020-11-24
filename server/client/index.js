@@ -78,6 +78,8 @@ socket.on('player-number', num => {
     }
 })
 
+document.getElementById('headerpicture').innerHTML = "<div class = 'headerpic'></div>";
+
 function drawMap() {
     document.getElementById('map').innerHTML = " "
     for (var yaxis = 0; yaxis < world.length; yaxis++) { //initialize x and yaxis, 
