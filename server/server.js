@@ -3,7 +3,26 @@ const path = require('path');
 const http = require('http');
 //const PORT = process.env.PORT || 3000  
 const socketio = require('socket.io'); // Socket io server
+const mysql = require('mysql');
+const con = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'MYGAME!1database',
+  database: 'pacman'
+});
 
+con.connect((err) => {
+  if(err) throw err;
+  console.log('Connection established');
+});
+// checking whether query works
+// vvvvvvvvvvvvvvvvvvvvvvvvvvv
+con.query('SELECT * FROM scoreboard', (err,rows) => {
+    if(err) throw err;
+
+    console.log('Data received from Db:');
+    console.log(rows);
+});
 
 const app = express();
 const server = http.createServer(app);
