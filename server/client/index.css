@@ -2,9 +2,18 @@ div {
     margin: -2px;
 }
 
+.headerpic {
+    margin-left: -60px;
+    margin-bottom: 50px;
+    width: 500px;
+    height: 150px;
+    background-image: url(images/wap.png);
+    background-size: 500px;
+}
+
 body {
     margin-left: 580px;
-    margin-top: 200px;
+    margin-top: 100px;
     background-color: black;
 }
 
@@ -82,3 +91,4 @@ body {
     background-color: rgb(94, 255, 0);
     display: inline-block;
 }
+
