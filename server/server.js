@@ -57,10 +57,10 @@ io.on('connection', socket => { //On user connection
     })
 
     socket.on('playerPosition', data => {
-        playerStatus[socket.id] = (data.playerPosition);
+        playerStatus[socket.id] = (data.playerPosition+"<div id='headerpicture'></div>");
         console.log(playerStatus);
         var myJSON = JSON.stringify(playerStatus);
-        myJSON = myJSON.replace(/[{​​​​​}​​​​​]/g, '');
+        myJSON = myJSON.replace(/[{","​​​​​}​​​​​]/g, '');
         socket.emit('scores', myJSON);
         // console.log(myJSON);
     })
