@@ -67,10 +67,11 @@ io.on('connection', socket => { //On user connection
         // not sure about the positioning of the below query
         // the idea is: on disconnection, 
         // store the player name and score so it can accessed later
-        con.query((`INSERT INTO customers (name, address) VALUES (${socket.id}, ${data.playerScore})`), function (err, result) {
+        
+        /* con.query((`INSERT INTO customers (name, address) VALUES (${socket.id}, ${data.playerScore})`), function (err, result) {
             if (err) throw err;
             console.log("1 record inserted");
-          });
+          }); */
 
         console.log(`aww ${socket.id} just left`);
     })
