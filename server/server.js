@@ -9,7 +9,7 @@ var mysql = require('mysql'); // using mysql module
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",    
-    password: "<password>", // enter password of mysql db
+    password: "MYGAME!1database", // enter password of mysql db
     database: "pacman"
 }); 
 
