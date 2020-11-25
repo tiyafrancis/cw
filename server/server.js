@@ -24,6 +24,8 @@ con.query('SELECT * FROM scoreboard', (err,rows) => {
     console.log(rows);
 });
 
+
+
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
@@ -53,13 +55,16 @@ io.on('connection', socket => { //On user connection
 */
     socket.on('userName', name => {
         socket.id = name;
+        con.query(`INSERT INTO scoreboard (player) VALUES ('${name}')`, function(err,result) {
+            if (err) throw err;
+            console.log("1 record inserted");
+        });
         console.log(`yay!! ${name} just connected!`);
     })
 
     socket.on('disconnect', data => {
         console.log(`aww ${socket.id} just left`);
         playerStatus = {}
-        playerStatus_console = {}
     })
 
     socket.on('player-joined', () => {
@@ -71,7 +76,8 @@ io.on('connection', socket => { //On user connection
         playerStatus_console[socket.id] = (data.playerPosition);
         playerStatus[socket.id] = (data.playerPosition + "<div id='headerpicture'></div>");
         console.log(playerStatus_console);
-        var myJSON = JSON.stringify(playerStatus);
+        var myJSON = JSON.stringify(playerStatus_console);
+        
         myJSON = myJSON.replace(/[{","​​​​​}​​​​​]/g, '');
         // console.log(myJSON);
         socket.emit('scores', myJSON);
