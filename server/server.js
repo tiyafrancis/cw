@@ -4,11 +4,11 @@ const http = require('http');
 //const PORT = process.env.PORT || 3000  
 const socketio = require('socket.io'); // Socket io server
 
+
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-//const sql = require('mysql');
-
+    
 app.use(express.static(path.join(__dirname, "client"))); //Serving static folder to the client
 
 
@@ -19,11 +19,10 @@ var playerNames = {};
 const connections = []; // 5 players in each game 
 var playerStatus = {}; //Players score, location
 
-// not sure about the positioning of the below query
 
 
 io.on('connection', socket => { //On user connection
-
+    
     /*  var playerNumber = -1;
     for (var i in numberOfConnections) { //Iterating through the array
         if (numberOfConnections[i] == null) {
@@ -38,17 +37,7 @@ io.on('connection', socket => { //On user connection
     })
 
     socket.on('disconnect', data => {
-        // not sure about the positioning of the below query
-        // the idea is: on disconnection, 
-        // store the player name and score so it can accessed later
-        
-        /* con.query((`INSERT INTO scoreboard (player, score) VALUES (${socket.id}, ${data.playerScore})`), function (err, result) {
-            if (err) throw err;
-            console.log("1 record inserted");
-          }); */
-
         console.log(`aww ${socket.id} just left`);
-        playerStatus = {}
     })
 
     socket.on('player-joined', () => {
@@ -79,7 +68,6 @@ io.on('connection', socket => { //On user connection
         socket.broadcast.emit('gameover2', data);
     })
 
-
     setInterval(() => { // Refreshing wvery 2 milliseconds 
         socket.emit('updateScores', playerStatus);
     }, 300)
@@ -97,11 +85,6 @@ io.on('connection', socket => { //On user connection
     // if (playerNumber == 6) {
     //     return;
     // }
-
     
 });
-
-
-
-
 
