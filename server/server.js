@@ -1,7 +1,7 @@
 const express = require('express'); // Express frameork 
 const path = require('path');
 const http = require('http');
-//const PORT = process.env.PORT || 3000  
+const PORT = process.env.PORT || 3000  
 const socketio = require('socket.io'); // Socket io server
 const mysql = require('mysql');
 const con = mysql.createConnection({
