@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 //const sql = require('mysql');
-    
+
 app.use(express.static(path.join(__dirname, "client"))); //Serving static folder to the client
 
 
@@ -23,7 +23,7 @@ var playerStatus = {}; //Players score, location
 
 
 io.on('connection', socket => { //On user connection
-    
+
     /*  var playerNumber = -1;
     for (var i in numberOfConnections) { //Iterating through the array
         if (numberOfConnections[i] == null) {
@@ -48,6 +48,7 @@ io.on('connection', socket => { //On user connection
           }); */
 
         console.log(`aww ${socket.id} just left`);
+        playerStatus = {}
     })
 
     socket.on('player-joined', () => {
@@ -78,6 +79,7 @@ io.on('connection', socket => { //On user connection
         socket.broadcast.emit('gameover2', data);
     })
 
+
     setInterval(() => { // Refreshing wvery 2 milliseconds 
         socket.emit('updateScores', playerStatus);
     }, 300)
@@ -95,6 +97,11 @@ io.on('connection', socket => { //On user connection
     // if (playerNumber == 6) {
     //     return;
     // }
+
     
+});
+
+
+
 });
 
