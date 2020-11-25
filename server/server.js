@@ -1,7 +1,7 @@
 const express = require('express'); // Express frameork 
 const path = require('path');
 const http = require('http');
-//const PORT = process.env.PORT || 3000  
+const PORT = process.env.PORT || 3000  
 const socketio = require('socket.io'); // Socket io server
 const mysql = require('mysql');
 const con = mysql.createConnection({
@@ -15,8 +15,7 @@ con.connect((err) => {
   if(err) throw err;
   console.log('Connection established');
 });
-// checking whether query works
-// vvvvvvvvvvvvvvvvvvvvvvvvvvv
+
 con.query('SELECT * FROM scoreboard', (err,rows) => {
     if(err) throw err;
 
