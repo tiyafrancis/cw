@@ -15,8 +15,7 @@ con.connect((err) => {
   if(err) throw err;
   console.log('Connection established');
 });
-// checking whether query works
-// vvvvvvvvvvvvvvvvvvvvvvvvvvv
+
 con.query('SELECT * FROM scoreboard', (err,rows) => {
     if(err) throw err;
 
