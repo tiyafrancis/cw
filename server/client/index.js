@@ -186,8 +186,18 @@ var alerts =
 //  clearInterval(alerts);
 //}
 
+var pressed = false;
 
 document.onkeydown = function(e) { // This fcution basically runs whenever you hit any key 
+
+    if (pressed === true) {
+        return false;
+    }
+
+    pressed = true;
+
+    setTimeout(function() { pressed = false }, 100);
+
     console.log(world[pacman.yaxis][pacman.xaxis]); // Pacmans position in the array 
     // If you hit any key the above code runs on the console, I used hello so that i could find the code above that on the console
     if (e.key === "ArrowLeft") { //Left
@@ -278,6 +288,8 @@ document.onkeydown = function(e) { // This fcution basically runs whenever you h
     console.log("Score is " + playerScore);
     //document.getElementById('scoreboard').innerHTML = "Score: " + playerScore;
 }
+
+
 
 
 
