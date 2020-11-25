@@ -42,6 +42,7 @@ var userName = prompt("Please enter a username");
 var playerScore = 0;
 //var totalGameScore = 0;
 document.getElementById('scoreboard').innerHTML = "Score: ";
+document.getElementById('tryAgain').style.visibility = "hidden";
 
 var playerNum = 0;
 var ready = false;
@@ -172,6 +173,20 @@ drawMap(); //Calling the above funtion and printing out the map
 // Movement 
 
 
+var alerts =
+    setInterval(function() {
+        if (totalGameScore == 47) {
+            alert("Nice work " + userName + ", You won!!");
+            clearInterval(alerts);
+            socket.emit('gameover', totalGameScore);
+        }
+    }, 100);
+
+//function stopAlerts() {
+//  clearInterval(alerts);
+//}
+
+
 document.onkeydown = function(e) { // This fcution basically runs whenever you hit any key 
     console.log(world[pacman.yaxis][pacman.xaxis]); // Pacmans position in the array 
     // If you hit any key the above code runs on the console, I used hello so that i could find the code above that on the console
@@ -241,8 +256,7 @@ document.onkeydown = function(e) { // This fcution basically runs whenever you h
     function gameOver() {
 
         if (totalGameScore == 47) {
-            alert("Nice work " + userName + ", You won!!");
-            socket.emit('gameover', totalGameScore);
+            stopAlerts();
         }
     }
 
@@ -259,11 +273,12 @@ document.onkeydown = function(e) { // This fcution basically runs whenever you h
 
     drawMap();
     //updateMap();
-    gameOver();
+    // gameOver();
     console.log("Im here");
     console.log("Score is " + playerScore);
     //document.getElementById('scoreboard').innerHTML = "Score: " + playerScore;
 }
+
 
 
 socket.on('scores', liveScores => {
@@ -273,16 +288,27 @@ socket.on('scores', liveScores => {
 
 });
 
+
+
+
 function updateScores() {
     socket.emit('playerPosition', { playerPosition: pacman.score });
 }
 
 socket.on('updateScores', updateScores);
 
+function showButton() {
+
+}
 
 function gameOver2() {
     alert("Game over");
     gameOverMap();
+    document.getElementById('tryAgain').style.visibility = "visible";
+    //showButton();
+    // location.reload();
+    socket.emit('resetserver', data);
+
 }
 
 socket.on('gameover2', gameOver2);
