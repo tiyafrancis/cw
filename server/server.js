@@ -8,7 +8,7 @@ const socketio = require('socket.io'); // Socket io server
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-    
+
 app.use(express.static(path.join(__dirname, "client"))); //Serving static folder to the client
 
 
@@ -18,11 +18,12 @@ server.listen(3000, () => { // Listening on port
 var playerNames = {};
 const connections = []; // 5 players in each game 
 var playerStatus = {}; //Players score, location
+var playerStatus_console = {}
 
 
 
 io.on('connection', socket => { //On user connection
-    
+
     /*  var playerNumber = -1;
     for (var i in numberOfConnections) { //Iterating through the array
         if (numberOfConnections[i] == null) {
@@ -38,6 +39,8 @@ io.on('connection', socket => { //On user connection
 
     socket.on('disconnect', data => {
         console.log(`aww ${socket.id} just left`);
+        playerStatus = {}
+        playerStatus_console = {}
     })
 
     socket.on('player-joined', () => {
@@ -46,12 +49,14 @@ io.on('connection', socket => { //On user connection
     })
 
     socket.on('playerPosition', data => {
-        playerStatus[socket.id] = (data.playerPosition+"<div id='headerpicture'></div>");
-        console.log(playerStatus);
+        playerStatus_console[socket.id] = (data.playerPosition);
+        playerStatus[socket.id] = (data.playerPosition + "<div id='headerpicture'></div>");
+        console.log(playerStatus_console);
         var myJSON = JSON.stringify(playerStatus);
         myJSON = myJSON.replace(/[{","​​​​​}​​​​​]/g, '');
-        socket.emit('scores', myJSON);
         // console.log(myJSON);
+        socket.emit('scores', myJSON);
+
     })
 
     socket.on('playerScore', data => {
@@ -85,6 +90,5 @@ io.on('connection', socket => { //On user connection
     // if (playerNumber == 6) {
     //     return;
     // }
-    
-});
 
+});
