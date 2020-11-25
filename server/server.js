@@ -3,15 +3,6 @@ const path = require('path');
 const http = require('http');
 //const PORT = process.env.PORT || 3000  
 const socketio = require('socket.io'); // Socket io server
-var mysql = require('mysql'); // using mysql module
-
-// connect to db
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",    
-    password: "MYGAME!1database", // enter password of mysql db
-    database: "pacman"
-}); 
 
 const app = express();
 const server = http.createServer(app);
@@ -29,25 +20,7 @@ const connections = []; // 5 players in each game
 var playerStatus = {}; //Players score, location
 
 // not sure about the positioning of the below query
-con.connect(function(err) {
-    if (err) 
-        console.log("Can not connect to db!");
-    else
-    {
-        console.log("Connected!");
-        con.query("CREATE DATABASE pacman", function (err, result) {
-            if (err) throw err;
-            console.log("Database created");
-        });
-        var sql = "CREATE TABLE scoreboard (players VARCHAR(255), score int)";
-        con.query(sql, function (err, result) {
-            if (err) throw err;
-            console.log("Table created");
-        });
-       
-    }
-        
-});
+
 
 io.on('connection', socket => { //On user connection
     
@@ -69,7 +42,7 @@ io.on('connection', socket => { //On user connection
         // the idea is: on disconnection, 
         // store the player name and score so it can accessed later
         
-        /* con.query((`INSERT INTO customers (name, address) VALUES (${socket.id}, ${data.playerScore})`), function (err, result) {
+        /* con.query((`INSERT INTO scoreboard (player, score) VALUES (${socket.id}, ${data.playerScore})`), function (err, result) {
             if (err) throw err;
             console.log("1 record inserted");
           }); */
