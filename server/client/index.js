@@ -148,17 +148,17 @@ var alerts =
         }
     }, 100);
 
-var pressed = false;
+var over = false;
 
 document.onkeydown = function(e) { // This fcution basically runs whenever you hit any key 
 
-    if (pressed === true) {
+    if (over === true) {
         return false;
     }
 
-    pressed = true;
+    over = true;
 
-    setTimeout(function() { pressed = false }, 100);
+    setTimeout(function() { over = false }, 100);
 
     console.log(world[pacman.yaxis][pacman.xaxis]); // Pacmans position in the array 
     // If you hit any key the above code runs on the console, I used hello so that i could find the code above that on the console
