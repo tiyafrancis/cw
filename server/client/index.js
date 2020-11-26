@@ -2,9 +2,6 @@
 // 2 = <div class="player"></div>  By default player model is set to right 
 // 3 = <div class="bg"></div>
 // 4 = <div class="coin"> </div>
-// 5 = <div class="ghost1"> </div> 
-// 6 = <div class="ghost2"> </div> 
-// 7 = <div class="ghost3"> </div> 
 // 8 = <div class='player_down'></div>
 // 9 = <div class='player_left'></div>
 // 10 = <div class='player_up'></div>
