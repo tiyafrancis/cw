@@ -1,9 +1,9 @@
 const express = require('express'); // Express frameork 
 const path = require('path');
 const http = require('http');
-//const PORT = process.env.PORT || 3000  
+const PORT = process.env.PORT || 3000;  
 const socketio = require('socket.io'); // Socket io server
-const mysql = require('mysql');
+/* const mysql = require('mysql');
 const con = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -14,9 +14,8 @@ const con = mysql.createConnection({
 con.connect((err) => {
   if(err) throw err;
   console.log('Connection established');
-});
-// checking whether query works
-// vvvvvvvvvvvvvvvvvvvvvvvvvvv
+}); */
+
 con.query('SELECT * FROM scoreboard', (err,rows) => {
     if(err) throw err;
 
@@ -55,10 +54,10 @@ io.on('connection', socket => { //On user connection
 */
     socket.on('userName', name => {
         socket.id = name;
-        con.query(`INSERT INTO scoreboard (player) VALUES ('${name}')`, function(err,result) {
+        /* con.query(`INSERT INTO scoreboard (player) VALUES ('${name}')`, function(err,result) {
             if (err) throw err;
             console.log("1 record inserted");
-        });
+        }); */
         console.log(`yay!! ${name} just connected!`);
     })
 
