@@ -16,13 +16,13 @@ con.connect((err) => {
   console.log('Connection established');
 }); */
 
-con.query('SELECT * FROM scoreboard', (err,rows) => {
+/* con.query('SELECT * FROM scoreboard', (err,rows) => {
     if(err) throw err;
 
     console.log('Data received from Db:');
     console.log(rows);
 });
-
+ */
 
 
 const app = express();
@@ -75,7 +75,7 @@ io.on('connection', socket => { //On user connection
         playerStatus_console[socket.id] = (data.playerPosition);
         playerStatus[socket.id] = (data.playerPosition + "<div id='headerpicture'></div>");
         console.log(playerStatus_console);
-        var myJSON = JSON.stringify(playerStatus_console);
+        var myJSON = JSON.stringify(playerStatus);
         
         myJSON = myJSON.replace(/[{","​​​​​}​​​​​]/g, '');
         // console.log(myJSON);
