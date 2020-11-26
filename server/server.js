@@ -1,7 +1,7 @@
 const express = require('express'); // Express frameork 
 const path = require('path');
 const http = require('http');
-const PORT = process.env.PORT || 3000;  
+const PORT = process.env.PORT || 3000;
 const socketio = require('socket.io'); // Socket io server
 /* const mysql = require('mysql');
 const con = mysql.createConnection({
@@ -16,13 +16,19 @@ con.connect((err) => {
   console.log('Connection established');
 }); */
 
+
 /* con.query('SELECT * FROM scoreboard', (err,rows) => {
+
+/*
+con.query('SELECT * FROM scoreboard', (err,rows) => {
+
     if(err) throw err;
 
     console.log('Data received from Db:');
     console.log(rows);
 });
  */
+
 
 
 const app = express();
@@ -43,15 +49,6 @@ var playerStatus_console = {}
 
 
 io.on('connection', socket => { //On user connection
-
-    /*  var playerNumber = -1;
-    for (var i in numberOfConnections) { //Iterating through the array
-        if (numberOfConnections[i] == null) {
-            playerNumber = i; //Setting player number to the number of the element of null
-            break; //breaking the statement so it isn't repeated over and over again
-        }
-    }
-*/
     socket.on('userName', name => {
         socket.id = name;
         /* con.query(`INSERT INTO scoreboard (player) VALUES ('${name}')`, function(err,result) {
@@ -75,11 +72,18 @@ io.on('connection', socket => { //On user connection
         playerStatus_console[socket.id] = (data.playerPosition);
         playerStatus[socket.id] = (data.playerPosition + "<div id='headerpicture'></div>");
         console.log(playerStatus_console);
+
         var myJSON = JSON.stringify(playerStatus);
         
         myJSON = myJSON.replace(/[{","​​​​​}​​​​​]/g, '');
         // console.log(myJSON);
         socket.emit('scores', myJSON);
+
+        var playerStatusString = JSON.stringify(playerStatus);
+
+        playerStatusString = playerStatusString.replace(/[{","​​​​​}​​​​​]/g, '');
+        socket.emit('scores', playerStatusString);
+
 
     })
 
@@ -88,11 +92,6 @@ io.on('connection', socket => { //On user connection
         console.log(playerStatus);
     })
 
-
-    // TODO: setInterval function 
-
-
-    //socket.emit('totalscore', playerStatus.score); 
     socket.on('gameover', data => {
         socket.broadcast.emit('gameover2', data);
     })
@@ -100,19 +99,5 @@ io.on('connection', socket => { //On user connection
     setInterval(() => { // Refreshing wvery 2 milliseconds 
         socket.emit('updateScores', playerStatus);
     }, 300)
-
-    /*
-    socket.emit('player-number', playerNumber); //Telling the user what player they are
-    console.log(`Player ${playerNumber} has joined`);
-
-    connections[playerNumber] = false;
-
-    */
-
-    //Ignoring additional players 
-
-    // if (playerNumber == 6) {
-    //     return;
-    // }
 
 });

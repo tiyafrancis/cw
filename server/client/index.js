@@ -2,29 +2,27 @@
 // 2 = <div class="player"></div>  By default player model is set to right 
 // 3 = <div class="bg"></div>
 // 4 = <div class="coin"> </div>
-// 5 = <div class="ghost1"> </div> 
-// 6 = <div class="ghost2"> </div> 
-// 7 = <div class="ghost3"> </div> 
 // 8 = <div class='player_down'></div>
 // 9 = <div class='player_left'></div>
 // 10 = <div class='player_up'></div>
 // The numbers used below in the comments are used for reference, the number of moveable rows
 var world = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 2, 3, 4, 3, 4, 3, 4, 3, 4, 3, 3, 4, 3, 1], //1
-    [1, 3, 1, 1, 1, 1, 3, 1, 1, 1, 4, 1, 1, 4, 1], //2
-    [1, 4, 1, 3, 4, 3, 3, 4, 1, 1, 4, 1, 1, 3, 1], //3
-    [1, 3, 4, 4, 3, 1, 3, 4, 1, 3, 3, 4, 3, 3, 1], //4  
-    [1, 3, 1, 1, 4, 1, 1, 1, 1, 4, 1, 1, 4, 1, 1], //5  !
-    [1, 1, 1, 4, 3, 4, 3, 4, 1, 3, 4, 1, 3, 4, 1], //6  !
-    [1, 3, 4, 3, 1, 1, 4, 1, 1, 1, 3, 4, 1, 3, 1], //7  !
-    [1, 4, 1, 3, 3, 4, 1, 3, 3, 4, 1, 3, 1, 3, 1], //8  !
-    [1, 3, 3, 1, 4, 1, 3, 3, 1, 4, 1, 3, 3, 4, 1], //9  !  
-    [1, 1, 4, 1, 1, 1, 3, 1, 4, 1, 3, 1, 3, 1, 1], //10 !
-    [1, 4, 4, 4, 3, 3, 4, 3, 4, 1, 3, 4, 3, 4, 1], //11 !
-    [1, 1, 1, 3, 1, 3, 1, 3, 1, 1, 1, 3, 1, 3, 1], //12 !
-    [1, 4, 4, 3, 4, 3, 1, 3, 4, 3, 4, 3, 3, 4, 1], //13 !
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
+    [1, 2, 3, 4, 3, 4, 4, 4, 3, 4, 3, 3, 4, 3, 1, 3, 4, 3, 4, 1, ], //1
+    [1, 3, 1, 1, 1, 1, 3, 1, 1, 1, 4, 1, 1, 4, 3, 3, 1, 3, 3, 1, ], //2
+    [1, 4, 1, 3, 4, 3, 3, 4, 1, 1, 4, 1, 1, 3, 1, 3, 1, 1, 4, 1, ], //3
+    [1, 3, 4, 4, 3, 1, 3, 4, 1, 3, 3, 4, 3, 4, 1, 4, 4, 4, 3, 1, ], //4  
+    [1, 3, 1, 1, 4, 1, 1, 1, 1, 4, 1, 1, 4, 1, 1, 1, 1, 1, 3, 1, ], //5  !
+    [1, 1, 1, 4, 3, 4, 3, 4, 1, 3, 4, 1, 3, 4, 4, 4, 3, 4, 3, 1, ], //6  !
+    [1, 3, 4, 3, 1, 1, 4, 1, 1, 1, 3, 4, 1, 3, 3, 1, 1, 3, 1, 1, ], //7  !
+    [1, 4, 1, 3, 3, 4, 1, 3, 3, 4, 1, 3, 1, 3, 1, 3, 3, 1, 1, 1, ], //8  !
+    [1, 3, 3, 1, 4, 1, 3, 3, 1, 4, 1, 3, 3, 4, 3, 4, 4, 3, 4, 1, ], //9  !  
+    [1, 1, 4, 1, 1, 1, 3, 1, 4, 1, 3, 1, 3, 1, 1, 1, 1, 4, 3, 1, ], //10 !
+    [1, 4, 4, 4, 3, 3, 4, 3, 4, 1, 3, 4, 3, 4, 1, 1, 4, 3, 4, 1, ], //11 !
+    [1, 1, 1, 3, 1, 3, 1, 3, 1, 1, 1, 3, 1, 3, 3, 1, 4, 1, 3, 1, ], //12 !
+    [1, 4, 4, 3, 4, 3, 1, 3, 4, 3, 1, 3, 3, 4, 3, 1, 3, 1, 4, 1, ], //13 !
+    [1, 3, 3, 3, 1, 3, 1, 3, 1, 3, 4, 3, 1, 1, 3, 4, 3, 1, 3, 1, ],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
 ]
 
 var pacman = {
@@ -32,8 +30,6 @@ var pacman = {
     yaxis: 1,
     score: 0 //Score added to pacman object
 }
-
-pacmans = {}; //Object to hold other players and to draw on the client side 
 
 var userName = prompt("Please enter a username");
 
@@ -52,21 +48,6 @@ socket.emit('userName', userName);
 
 socket.on('player-joined-notification', data => {
     console.log(`Player ${data.playerNumber} has joined`);
-
-
-    // Check 
-    newPacman = {
-        xaxis: 1,
-        yaxis: 2,
-        score: 0
-    }
-
-    pacmans[data.player] = {
-            xaxis: 1,
-            yaxis: 2,
-            score: 0
-        }
-        ////updateMap();
 })
 
 
@@ -115,9 +96,6 @@ function drawMap() {
         // is printed out seperately 
 
     }
-    for (let pm in pacmans) {
-        world[pacmans[pm].yaxis][pacmans[pm].xaxis] = 9; // Iterating through pacmans, and drawing them on the world 
-    }
 
 }
 //TODO: add refresh div on html to refresh the game
@@ -155,48 +133,32 @@ function gameOverMap() { // Same code as above but coins are replaced w bg for w
         // is printed out seperately 
 
     }
-    for (let pm in pacmans) {
-        world[pacmans[pm].yaxis][pacmans[pm].xaxis] = 9; // Iterating through pacmans, and drawing them on the world 
-    }
 
 }
 
-
-
-
-
-
-
 drawMap(); //Calling the above funtion and printing out the map 
-//TODO: Use the for loop iterating through the pacman object and put it in a new function
-// called //updateMap where its called after every drawMap() 
 // Movement 
-
 
 var alerts =
     setInterval(function() {
-        if (totalGameScore == 47) {
+        if (totalGameScore == 67) {
             alert("Nice work " + userName + ", You won!!");
             clearInterval(alerts);
             socket.emit('gameover', totalGameScore);
         }
     }, 100);
 
-//function stopAlerts() {
-//  clearInterval(alerts);
-//}
-
-var pressed = false;
+var over = false;
 
 document.onkeydown = function(e) { // This fcution basically runs whenever you hit any key 
 
-    if (pressed === true) {
+    if (over === true) {
         return false;
     }
 
-    pressed = true;
+    over = true;
 
-    setTimeout(function() { pressed = false }, 100);
+    setTimeout(function() { over = false }, 100);
 
     console.log(world[pacman.yaxis][pacman.xaxis]); // Pacmans position in the array 
     // If you hit any key the above code runs on the console, I used hello so that i could find the code above that on the console
@@ -209,9 +171,7 @@ document.onkeydown = function(e) { // This fcution basically runs whenever you h
             }
             world[pacman.yaxis][pacman.xaxis] = 3; //Pacman's old position being replaced with the background
             pacman.xaxis = pacman.xaxis - 1; // Reducing the x axis so pacman moves left 
-            world[pacman.yaxis][pacman.xaxis] = 9; // Replacing new position with pacman
-            // score();
-            //updateMap();
+            world[pacman.yaxis][pacman.xaxis] = 9; // Replacing new position with pacman;
             drawMap(); // We call the drawMap func every time because we redraw the map everytime the statemnt gets executed 
         }
 
@@ -225,8 +185,6 @@ document.onkeydown = function(e) { // This fcution basically runs whenever you h
             world[pacman.yaxis][pacman.xaxis] = 3;
             pacman.yaxis = pacman.yaxis - 1;
             world[pacman.yaxis][pacman.xaxis] = 10;
-            //   score();
-            //updateMap();
             drawMap();
         }
 
@@ -240,8 +198,6 @@ document.onkeydown = function(e) { // This fcution basically runs whenever you h
             world[pacman.yaxis][pacman.xaxis] = 3;
             pacman.xaxis = pacman.xaxis + 1;
             world[pacman.yaxis][pacman.xaxis] = 2;
-            //score();
-            //updateMap();
             drawMap();
         }
 
@@ -255,53 +211,24 @@ document.onkeydown = function(e) { // This fcution basically runs whenever you h
             world[pacman.yaxis][pacman.xaxis] = 3;
             pacman.yaxis = pacman.yaxis + 1;
             world[pacman.yaxis][pacman.xaxis] = 8;
-            //  score();
-            //updateMap();
             drawMap();
 
         }
 
     }
     totalGameScore = playerScore; // + other player scores. yet to be implemented
-    function gameOver() {
-
-        if (totalGameScore == 47) {
-            stopAlerts();
-        }
-    }
-
-
-    //  socket.emit('playerPosition', { playerPosition: pacman.score });
-    /*
-    function updateMap() {
-        for (let pm in pacmans) {
-            world[pacmans[pm].yaxis][pacmans[pm].xaxis] = 9; // Iterating through pacmans, and drawing them on the world 
-        }
-    }
-    */
-    //socket.on('updatePosition', updateMap);
 
     drawMap();
-    //updateMap();
-    // gameOver();
+
     console.log("Im here");
     console.log("Score is " + playerScore);
-    //document.getElementById('scoreboard').innerHTML = "Score: " + playerScore;
+
 }
 
-
-
-
-
 socket.on('scores', liveScores => {
-    //var myJSON = JSON.stringify(liveScores);
-    //console.log(myJSON);
     document.getElementById('scoreboard').innerHTML = "Score: " + liveScores;
 
 });
-
-
-
 
 function updateScores() {
     socket.emit('playerPosition', { playerPosition: pacman.score });
@@ -309,16 +236,10 @@ function updateScores() {
 
 socket.on('updateScores', updateScores);
 
-function showButton() {
-
-}
-
 function gameOver2() {
     alert("Game over");
     gameOverMap();
     document.getElementById('tryAgain').style.visibility = "visible";
-    //showButton();
-    // location.reload();
     socket.emit('resetserver', data);
 
 }
