@@ -8,13 +8,13 @@ __Team Members:__
 
 __Game:__
 * 2D
-* MMOG ver. of pac-man
+* MMOG ver. of pac-man called PacRace
 
 __Game plan (inspired by OG Pac-Man):__
 * 10 players max
 * General overview (see attached img)
   * On entry to the game, the players will spawn on one corner of the map.
-  * ***The AIM*** of the game is to keep eating the 'pellets' which will randomly spawn on the map and avoid the ghosts.
+  * ***The AIM*** of the game is to keep eating the 'pellets' which will randomly spawn on the map.
     * 1 pellet = 1 score
     * score will drop to zero if the player collides with a ghost
   * Survive until timer runs out.
